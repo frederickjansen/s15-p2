@@ -1,11 +1,11 @@
 <?php
 
-if (isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && strtolower( $_SERVER['HTTP_X_REQUESTED_WITH'] ) == 'xmlhttprequest')
-{
-    $separator,
-    $length,
-    $endNum,
-    $capitalize;
+//if (isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && strtolower( $_SERVER['HTTP_X_REQUESTED_WITH'] ) == 'xmlhttprequest')
+//{
+    $separator = '';
+    $length = 1;
+    $endNum = false;
+    $capitalize = false;
 
     cleanGlobals($_POST);
     validateOptions();
@@ -15,30 +15,35 @@ if (isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && strtolower( $_SERVER['HTTP_X_R
         $file = file_get_contents( 'wordlist.txt' );
         if ($file)
         {
-            $wordlist = explode( '\n', $file );
+            $wordlist = explode( "\n", $file );
             $password = '';
             for ($i=0; $i < $length; $i++)
             {
-                $password += $wordlist[rand( 0, length( $wordlist ) )];
+                $password .= trim( $wordlist[rand( 0, sizeof( $wordlist ) )] );
 
                 if ($i != $length - 1)
                 {
-                    $password += $separator;
+                    $password .= $separator;
                 }
                 else if ($endNum)
                 {
-                    $password += $endNum;
+                    $password .= rand( 0,9 );
                 }
             }
         }
-
-        echo json_decode('{result: "success", password:}');
+        else
+        {
+            echo "file not found";
+        }
+        echo $password;
+        //echo json_decode('{result: "success", password: "'.$password.'"}');
     }
     catch (Exception $e)
     {
-        echo json_decode('{result: "error"}');
+        echo 'fail';
+        //echo json_decode('{result: "error"}');
     }
-}
+//}
 
 function validateOptions()
 {
