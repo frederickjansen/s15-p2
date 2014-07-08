@@ -2,7 +2,7 @@
 
 //if (isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && strtolower( $_SERVER['HTTP_X_REQUESTED_WITH'] ) == 'xmlhttprequest')
 //{
-    $separator = '///..';
+    $separator = '/ -';
     $length = 4;
     $endNum = false;
     $capitalize = false;
