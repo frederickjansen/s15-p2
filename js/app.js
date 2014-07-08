@@ -18,7 +18,7 @@ $(function() {
 
 		post.done(function( data ) {
 			if (data.result == "success") {
-				$( "#password-field p" ).text( data.password );
+				$( "#password-field h4" ).text( data.password );
 			}
 		});
 	}
