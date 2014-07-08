@@ -45,15 +45,13 @@
         }
         else
         {
-            echo;
+            echo json_encode( array('result' => 'error') );
         }
-        echo $password;
-        //echo json_decode('{result: "success", password: "'.$password.'"}');
+        echo json_encode( array('result' => 'success', 'password' => $password ) );
     }
     catch (Exception $e)
     {
-        echo 'fail';
-        //echo json_decode('{result: "error"}');
+        echo json_encode( array('result' => 'error') );
     }
 //}
 

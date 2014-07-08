@@ -1,17 +1,29 @@
 $(function() {
-	$( "#password-form" ).submit(function( event ) {
-		event.preventDefault();
+	
+	function generatePassword( event ) {
 		
-		var $form = $( this ),
-		url = $form.attr( "action" ),
-		length = $form.find( "select[id='length']" ).val();
-		//separator = 
+		if (event) {
+			event.preventDefault();
+		}
+		
+		var $form = $( "#password-form" ),
+		url = $form.attr( "action" );
 
-		var post = $.post( url, $form.serialize() );
-		console.log($form.serialize());
+		var post = 	$.ajax({
+						type: "POST",
+						url: url,
+						data: $form.serialize(),
+						dataType: "json"
+					});
+
 		post.done(function( data ) {
-			alert(data);
+			if (data.result == "success") {
+				$( "#password-field p" ).text( data.password );
+			}
 		});
+	}
 
-	});
+	generatePassword();
+
+	$( "#password-form" ).submit( generatePassword );
 });
