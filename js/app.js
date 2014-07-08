@@ -19,6 +19,8 @@ $(function() {
 		post.done(function( data ) {
 			if (data.result == "success") {
 				$( "#password-field h4" ).text( data.password );
+			} else {
+				$( "#password-field h4" ).text( "Something went wrong parsing the word list." );
 			}
 		});
 	}

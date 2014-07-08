@@ -42,12 +42,12 @@ if (isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && strtolower( $_SERVER['HTTP_X_R
                     $password .= rand( 0,9 );
                 }
             }
+            echo json_encode( array('result' => 'success', 'password' => $password ) );
         }
         else
         {
             echo json_encode( array('result' => 'error') );
         }
-        echo json_encode( array('result' => 'success', 'password' => $password ) );
     }
     catch (Exception $e)
     {
