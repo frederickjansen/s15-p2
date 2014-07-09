@@ -13,3 +13,4 @@ Uses AJAX calls to ajax.php, so the index is a plain HTML page.
 ## Outside code
 * Bootstrap: http://getbootstrap.com/
 * jQuery: http://jquery.com
+* Wordlist: http://www.mieliestronk.com/wordlist.html
